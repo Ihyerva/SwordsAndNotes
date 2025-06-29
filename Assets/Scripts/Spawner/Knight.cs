@@ -27,12 +27,14 @@ public class Knight : MonoBehaviour
             index++;
             StartCoroutine(SpawnSword());
         }
-        else if(Data.currentLevel<currentLevel){
+        else{
             yield return new WaitForSeconds(10);
-            Data.currentLevel=currentLevel;
-            Data.Save();
-            SceneManager.LoadScene("LevelSelection");
-        }
+            if(Data.currentLevel<currentLevel){
+                Data.currentLevel=currentLevel;
+                Data.Save();
+            }
+            SceneManager.LoadScene("LevelSelection");   
+        } 
     }
 
 

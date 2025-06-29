@@ -1199,6 +1199,10 @@ PrefabInstance:
       value: LevelSelection
       objectReference: {fileID: 0}
     - target: {fileID: 7713870338632621636, guid: 4d0f820fd1ebead4c9acdbc777b4b565, type: 3}
+      propertyPath: currentLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7713870338632621636, guid: 4d0f820fd1ebead4c9acdbc777b4b565, type: 3}
       propertyPath: times.Array.size
       value: 18
       objectReference: {fileID: 0}
