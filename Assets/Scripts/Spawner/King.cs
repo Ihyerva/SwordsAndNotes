@@ -18,9 +18,9 @@ public class King : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+        updateScore.Raise(this, timer);
         if(timer>Data.timer){
             Data.timer = timer;
-            updateScore.Raise(this, timer);
         }
     }
 
