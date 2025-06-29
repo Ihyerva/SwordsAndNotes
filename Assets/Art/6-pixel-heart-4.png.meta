@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      6-pixel-heart-4_0: 1334871003670997086
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
