@@ -1268,7 +1268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713870338632621636, guid: 4d0f820fd1ebead4c9acdbc777b4b565, type: 3}
       propertyPath: 'isSharp.Array.data[0]'
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7713870338632621636, guid: 4d0f820fd1ebead4c9acdbc777b4b565, type: 3}
       propertyPath: 'isSharp.Array.data[1]'
@@ -1288,7 +1288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713870338632621636, guid: 4d0f820fd1ebead4c9acdbc777b4b565, type: 3}
       propertyPath: 'isSharp.Array.data[5]'
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7713870338632621636, guid: 4d0f820fd1ebead4c9acdbc777b4b565, type: 3}
       propertyPath: 'isSharp.Array.data[6]'
