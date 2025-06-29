@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0fd16449b86ec184b94bfc88f3464749
+  - enabled: 1
+    path: Assets/Scenes/Stories/StoryScene.unity
+    guid: cc051682f8cd1274885b899515ac6628
+  - enabled: 1
+    path: Assets/Scenes/LevelSelection.unity
+    guid: 9e48c48136523d64c815710a2b7d74f5
+  - enabled: 1
+    path: Assets/Scenes/Stories/StartingScene1.unity
+    guid: 07958e9c06f551444b7ca4c93819c182
+  - enabled: 1
+    path: Assets/Scenes/Stories/StartingScene2.unity
+    guid: 153eead58184d0c40af5b9dfe90b769f
+  - enabled: 1
+    path: Assets/Scenes/Stories/StartingScene3.unity
+    guid: d0361ca358824c84ab30a769d0a9ee9b
+  - enabled: 1
+    path: Assets/Scenes/Stories/Level1Scene.unity
+    guid: 6a7b561cb2cc30c4aae80e8970ab9793
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Stories/Level2Scene.unity
+    guid: ca3f9843d0f3cbc418e6db79ae8ce69f
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: d19896068f66e3b4e9144df40822a89e
+  - enabled: 1
+    path: Assets/Scenes/Stories/Level3Scene.unity
+    guid: 50577f602b5320648b62e2c7f3880c03
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: 9a19cbec0bc853045a4e5b8091f049de
+  - enabled: 1
+    path: Assets/Scenes/Levels/Infinite level.unity
+    guid: ca59acd2fe56f4f449bc909e0fd4b7ea
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 0db2a3fe13749a44fbed102bf662eeed
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_UseUCBPForAssetBundles: 0
