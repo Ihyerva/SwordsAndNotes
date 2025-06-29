@@ -9,7 +9,6 @@ public class Knight : MonoBehaviour
     [SerializeField] private float[] times;
     [SerializeField] private bool[] isSharp;
     [SerializeField] private GameEvent throwSword;
-    [SerializeField] private string sceneToLoad;
     private int index = 0;
 
     private void Start()
@@ -32,7 +31,7 @@ public class Knight : MonoBehaviour
             yield return new WaitForSeconds(10);
             Data.currentLevel=currentLevel;
             Data.Save();
-            SceneManager.LoadScene(sceneToLoad);
+            SceneManager.LoadScene("LevelSelection");
         }
     }
 
