@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class King : MonoBehaviour
@@ -7,8 +9,15 @@ public class King : MonoBehaviour
     [SerializeField] private GameEvent throwSword;
     [SerializeField] private GameEvent updateScore;
     [SerializeField] private string sceneToLoad;
-    private int index = 0;
     private float timer = 0f;
+
+    private HashSet<NoteType> sharpableNotes = new HashSet<NoteType> { 
+        NoteType.C4, NoteType.D4, NoteType.F4, NoteType.G4, NoteType.A4
+    };
+
+    private List<NoteType> possibleNotes = new List<NoteType> {
+        NoteType.C4, NoteType.D4, NoteType.E4, NoteType.F4, NoteType.G4, NoteType.A4, NoteType.B4
+    };
 
     private void Start()
     { 
@@ -19,28 +28,22 @@ public class King : MonoBehaviour
     {
         timer += Time.deltaTime;
         updateScore.Raise(this, timer);
-        if(timer>Data.timer){
-            Data.timer = timer;
-        }
+        Data.timer = timer;
     }
 
     IEnumerator SpawnSword()
-    {
-        int firstNumber = Random.Range(0, 11);
-        if (firstNumber == 1 || firstNumber == 5 || firstNumber == 8 || firstNumber == 11)
+    {   
+        while (true)
         {
-        SwordEventData swordEventData = new SwordEventData(false, firstNumber);
-        throwSword.Raise(this, swordEventData);
-        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-        StartCoroutine(SpawnSword());
-        }
-        else{
-        int secondNumber = Random.Range(0, 2);
-        bool secondBool = secondNumber == 1;
-        SwordEventData swordEventData = new SwordEventData(secondBool, firstNumber);
-        throwSword.Raise(this, swordEventData);
-        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-        StartCoroutine(SpawnSword());
+            NoteType baseNote = possibleNotes[Random.Range(0, possibleNotes.Count)];
+            bool isSharp = sharpableNotes.Contains(baseNote) && Random.Range(0, 2) == 1;
+            NoteType noteType = baseNote;
+            if (isSharp)
+            {
+                noteType |= NoteType.Sharp;
+            }
+            throwSword.Raise(this, noteType);
+            yield return new WaitForSeconds(Random.Range(0.5f, 2f));
         }
     }
 

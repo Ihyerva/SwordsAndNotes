@@ -590,6 +590,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Level2Scene
   unlocked: 0
+  images:
+  - {fileID: 159685524}
+  - {fileID: 265159811}
+  texts:
+  - {fileID: 1968507598}
 --- !u!1 &209392514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,6 +1067,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: StartingScene1
   unlocked: 0
+  images:
+  - {fileID: 434720788}
+  - {fileID: 1033588222}
+  texts:
+  - {fileID: 1144467764}
 --- !u!1 &446884814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1415,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.75
+  m_fontSize: 42.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1920,7 +1930,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -1928,6 +1937,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &1144467762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,7 +2022,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.25
+  m_fontSize: 49.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2398,6 +2408,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Level3Scene
   unlocked: 0
+  images:
+  - {fileID: 1309703623}
+  - {fileID: 1902047834}
+  texts:
+  - {fileID: 795517306}
 --- !u!1 &1429621777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,7 +2686,7 @@ GameObject:
   - component: {fileID: 1505511520}
   - component: {fileID: 1505511519}
   m_Layer: 5
-  m_Name: Image
+  m_Name: InfiniteLevelImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2781,6 +2796,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Infinite level
   unlocked: 0
+  images:
+  - {fileID: 1505511517}
+  - {fileID: 67748512}
+  texts:
+  - {fileID: 108474570}
+  - {fileID: 1660208226}
+  - {fileID: 2127085166}
 --- !u!1 &1532840034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,7 +3891,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.15
+  m_fontSize: 44.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

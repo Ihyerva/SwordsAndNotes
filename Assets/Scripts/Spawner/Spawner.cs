@@ -6,159 +6,78 @@ using System.Linq;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject sword;
-    [SerializeField] private GameObject notePrefab; // Order must match allNotes!
-    private bool levelStarted = false;
-    private static readonly string[] allNotes = new string[] {
-        "D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4",
-        "C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5"
-    };
-
+    [SerializeField] private GameObject notePrefab;
+    private Pool _notePool;
+    private Pool _swordPool;
     private Transform[] SwordSpawnPoints;
     private Transform[] NoteSpawnPoints;
 
+    private static readonly Dictionary<NoteType, int> noteToIndex = new Dictionary<NoteType, int>
+    {
+        // All notes of the same pitch class spawn at the same position (4th octave positions)
+        {NoteType.D3, 0}, {NoteType.D4, 0}, {NoteType.D5, 0},
+        {NoteType.E2, 1}, {NoteType.E3, 1}, {NoteType.E4, 1}, {NoteType.E5, 1},
+        {NoteType.F2, 2}, {NoteType.F3, 2}, {NoteType.F4, 2}, {NoteType.F5, 2},
+        {NoteType.G2, 3}, {NoteType.G3, 3}, {NoteType.G4, 3}, {NoteType.G5, 3},
+        {NoteType.A2, 4}, {NoteType.A3, 4}, {NoteType.A4, 4},
+        {NoteType.B2, 5}, {NoteType.B3, 5}, {NoteType.B4, 5},
+        {NoteType.C3, 6}, {NoteType.C4, 6}, {NoteType.C5, 6}
+    };
+
     private void Awake()
     {
-        if (transform.childCount < 2)
-        {
-            Debug.LogError($"Spawner GameObject '{gameObject.name}' does not have enough children! childCount={transform.childCount}");
-        }
-        else
-        {
-            NoteSpawnPoints = transform.GetChild(0).GetComponentsInChildren<Transform>().Skip(1).ToArray();
-            SwordSpawnPoints = transform.GetChild(1).GetComponentsInChildren<Transform>().Skip(1).ToArray();
-            Debug.Log($"NoteSpawnPoints found: {NoteSpawnPoints.Length}");
-            Debug.Log($"SwordSpawnPoints found: {SwordSpawnPoints.Length}");
-            if (SwordSpawnPoints.Length == 0)
-            {
-                Debug.LogError("No SwordSpawnPoints found! Check the hierarchy under the second child of the Spawner GameObject.");
-            }
-            if (NoteSpawnPoints.Length == 0)
-            {
-                Debug.LogError("No NoteSpawnPoints found! Check the hierarchy under the first child of the Spawner GameObject.");
-            }
-        }
+        NoteSpawnPoints = transform.GetChild(0).GetComponentsInChildren<Transform>().Skip(1).ToArray();
+        SwordSpawnPoints = transform.GetChild(1).GetComponentsInChildren<Transform>().Skip(1).ToArray();
+    
     }
-
     private void Start()
     {
-        // ... existing code ...
+        _notePool = new Pool();
+        _notePool.Preload(notePrefab, 25);
+
+        _swordPool = new Pool();
+        _swordPool.Preload(sword, 15);
     }
 
     public void SpawnSword(Component sender, object data)
     {
-        var eventData = data as SwordEventData;
-        if (eventData == null)
+        NoteType noteType = (NoteType)data;
+        bool isSharp = noteType.HasFlag(NoteType.Sharp);
+        NoteType baseType = noteType & ~NoteType.Sharp;
+        
+        if (!noteToIndex.TryGetValue(baseType, out int location))
         {
-            Debug.LogError("Data is not of type SwordEventData!");
             return;
-        }
-        bool isSharp = eventData.isSharp;
-        int location = eventData.location;
-        Debug.Log($"SpawnSword called with location: {location}, isSharp: {isSharp}");
-        if (SwordSpawnPoints == null)
-        {
-            Debug.LogError("SwordSpawnPoints is null!");
-            return;
-        }
-        if (sword == null)
-        {
-            Debug.LogError("Sword prefab is not assigned!");
-            return;
-        }
-        Debug.Log($"SwordSpawnPoints length: {SwordSpawnPoints.Length}");
-        int index = location;
-        if (index < 0 || index >= SwordSpawnPoints.Length)
-        {
-            Debug.LogError($"Index {index} is out of range for SwordSpawnPoints (length {SwordSpawnPoints.Length})");
-            return;
-        }
-        if (SwordSpawnPoints[index] == null)
-        {
-            Debug.LogError($"SwordSpawnPoints[{index}] is null!");
-            return;
-        }
-        // You can use isSharp here to modify the sword if needed
-        GameObject swordInstance = Instantiate(sword, SwordSpawnPoints[index].position, sword.transform.rotation);
-        if(isSharp){
-            swordInstance.GetComponent<Sword>().SetAsSharp();
         }
 
+        if (SwordSpawnPoints[location] == null)
+        {
+            return;
+        }
+
+        GameObject swordInstance = _swordPool.GetFromPool(SwordSpawnPoints[location].position, SwordSpawnPoints[location].rotation);
+        
+        if(isSharp)
+            swordInstance.GetComponent<Projectile>().SetAsSharp();
     }
 
     public void SpawnNote(Component sender, object data)
     {
-        string noteName = data.ToString();
-        Debug.Log(noteName);
-        GameObject note = Instantiate(notePrefab, new Vector2(0,0), Quaternion.identity);
-        if(noteName.Contains("#")){
-            note.GetComponent<Note>().SetAsSharp();
-            noteName = noteName.Replace("#", "");
+        NoteType noteType = (NoteType)data;
+        GameObject note = _notePool.GetFromPool(Vector3.zero, Quaternion.identity);
+        NoteType baseType = noteType & ~NoteType.Sharp;
+        bool isSharp = (noteType & NoteType.Sharp) != 0;
+        if (isSharp)
+        {
+            note.GetComponent<Projectile>().SetAsSharp();
         }
-        if(note != null){
-        switch(noteName){
-            case "D4":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[0].position;
-            }
-                break; 
-            case "E4":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[1].position;
-            }
-                break;
-            case "F4":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[2].position;
-            }
-                break;      
-            case "G4":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[3].position;
-            }
-                break;      
-            case "A4":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[4].position;
-            }
-                break;  
-            case "B4":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[5].position;
-            }
-                break;  
-            case "C5":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[6].position;
-            }
-                break;  
-            case "D5":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[7].position;
-            }
-                break;
-            case "E5":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[8].position;
-            }
-                break;
-            case "F5":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[9].position;
-            }
-                break;
-            case "G5":
-            if(note != null){
-                note.transform.position = NoteSpawnPoints[10].position;
-            }
-            break;
-            default:
-            if(note != null){
-                Destroy(note);
-            }
-            break;
-            }
+        if (noteToIndex.TryGetValue(baseType, out int index))
+        {
+            note.transform.position = NoteSpawnPoints[index].position;
+        }
+        else
+        {
+            Destroy(note);
         }
     }
-
-    
 }

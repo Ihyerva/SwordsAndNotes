@@ -21,10 +21,10 @@ public class HealthUI : MonoBehaviour
     private void UpdateHearts(int health)
     {
 
-        while (hearts.Count > health)
+        for (int i = hearts.Count - 1; i >= 0; i--)
         {
-            Destroy(hearts[hearts.Count - 1]);
-            hearts.RemoveAt(hearts.Count - 1);
+            hearts[i].SetActive(i < health);
         }
+
     }
 } 
