@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 420105454245352551}
   - component: {fileID: 9213345709801762486}
   - component: {fileID: 8102616544598698004}
-  - component: {fileID: 133617191907447703}
   - component: {fileID: 8455609356160622647}
+  - component: {fileID: 2331490748516504210}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Flat
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
   m_LocalPosition: {x: 5.788, y: -4.761, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 1}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2125137508582319775}
@@ -56,6 +56,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,6 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -118,20 +121,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &133617191907447703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2923103890958780462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa5afc7a4edaa54b8b2bc53927d817d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  sharpSymbol: {fileID: 7828627638575043677}
 --- !u!61 &8455609356160622647
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -178,6 +167,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.5698986, y: 1.8045063}
   m_EdgeRadius: 0
+--- !u!114 &2331490748516504210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2923103890958780462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fc319cf37572861acece714407cd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  direction: {x: -1, y: 0}
+  speed: 1.5
+  sharpSymbol: {fileID: 7828627638575043677}
 --- !u!1 &7828627638575043677
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +209,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.92387956, w: 0.38268343}
   m_LocalPosition: {x: -15.27, y: -14.94, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 420105454245352551}
@@ -230,6 +234,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -251,6 +257,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1

@@ -8,7 +8,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameEvent HealthReduced;
     private int currentHealth;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = startingHealth;
@@ -16,13 +15,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger entered");
-        if (other.CompareTag("Flat") || other.CompareTag("Sharp"))
-        {
-            Debug.Log("health reduced");
-            Destroy(other.gameObject);
-            ReduceHealth(1);
-        }
+        other.gameObject.SetActive(false);
+        ReduceHealth(1);
     }
 
     private void ReduceHealth(int amount)

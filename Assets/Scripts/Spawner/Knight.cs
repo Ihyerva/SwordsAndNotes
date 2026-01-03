@@ -5,36 +5,28 @@ using UnityEngine.SceneManagement;
 public class Knight : MonoBehaviour
 {
     [SerializeField] private int currentLevel;
-    [SerializeField] private int[] locations;
+    [SerializeField] private NoteType[] swords;
     [SerializeField] private float[] times;
-    [SerializeField] private bool[] isSharp;
     [SerializeField] private GameEvent throwSword;
-    private int index = 0;
 
     private void Start()
     {
-
-        StartCoroutine(SpawnSword());
+        StartCoroutine(ThrowSword());
     }
 
-
-    IEnumerator SpawnSword()
+    IEnumerator ThrowSword()
     {
-        if(index < locations.Length){
+        for(int index = 0; index < swords.Length; index++)
+        {
             yield return new WaitForSeconds(times[index]);
-            var eventData = new SwordEventData(isSharp[index], locations[index]);
-            throwSword.Raise(this, eventData);
-            index++;
-            StartCoroutine(SpawnSword());
+            throwSword.Raise(this, swords[index]);
         }
-        else{
-            yield return new WaitForSeconds(10);
-            if(Data.currentLevel<currentLevel){
-                Data.currentLevel=currentLevel;
-                Data.Save();
-            }
-            SceneManager.LoadScene("LevelSelection");   
-        } 
+        yield return new WaitForSeconds(10);
+        if(Data.currentLevel<currentLevel){
+            Data.currentLevel=currentLevel;
+            Data.Save();
+        }
+        SceneManager.LoadScene("LevelSelection");   
     }
 
 
