@@ -1,8 +1,20 @@
 # Swords & Notes
+<p align="center">
+  <img src="docs/images/banner.png" width="100%" alt="Project Banner">
+</p>
 
-![Project Banner](docs/images/banner.png)
-[![Engine: Unity 6](https://img.shields.io/badge/Engine-Unity%206-black)](https://unity.com)
-[![Platform](https://img.shields.io/badge/Platform-Windows-blue)]()
+<p align="center">
+  <a href="https://unity.com">
+    <img src="https://img.shields.io/badge/Engine-Unity%206-black" alt="Engine">
+  </a>
+  <img src="https://img.shields.io/badge/Platform-Windows-blue" alt="Platform">
+</p>
+
+<p align="center">
+  <b>An educational rhythm game designed to help players master musical notes using a real instrument.</b>
+</p>
+
+---
 
 **Swords & Notes** is an educational rhythm game designed to help players master musical notes using a real instrument. By implementing a custom signal processing engine, the game analyzes live audio input to detect pitch and amplitude in real-time, requiring players to play specific notes to deflect incoming attacks.
 
