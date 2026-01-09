@@ -15,7 +15,7 @@ public void Preload(GameObject prefab, int count)
         _poolQueue.Enqueue(obj);
     }
 }
-public GameObject GetFromPool(Vector3 position, Quaternion rotation)
+public GameObject GetFromPool(Vector3 position)
 {
     GameObject obj = _poolQueue.Dequeue();
     _poolQueue.Enqueue(obj);
@@ -26,7 +26,6 @@ public GameObject GetFromPool(Vector3 position, Quaternion rotation)
     }
     obj.SetActive(true);
     obj.transform.position = position;
-    obj.transform.rotation = rotation;
     return obj;
 }
 
