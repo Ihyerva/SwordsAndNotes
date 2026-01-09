@@ -105,14 +105,14 @@ AudioSource:
   m_GameObject: {fileID: 4266906796841498985}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 6b18344333ce260faaa758a35a95bceb, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnNote: {fileID: 11400000, guid: 57db857214e15d445a761538db34c3ca, type: 2}
-  loudnessThreshold: -10
+  loudnessThreshold: -85
   fftSampleSize: 4096
   noteMarginHz: 10
   harmonicThreshold: 0.2

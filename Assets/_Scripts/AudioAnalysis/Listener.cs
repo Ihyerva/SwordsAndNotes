@@ -99,7 +99,7 @@ private static readonly Dictionary<float, NoteType> frequencyToNoteType = new Di
             return;
         }
 
-        microphoneDevice = Microphone.devices[0];
+        microphoneDevice = null;
         sampleRate = AudioSettings.outputSampleRate;
         clipSampleData = new float[fftSampleSize];
 

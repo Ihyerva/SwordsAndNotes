@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        GameObject swordInstance = _swordPool.GetFromPool(SwordSpawnPoints[location].position, SwordSpawnPoints[location].rotation);
+        GameObject swordInstance = _swordPool.GetFromPool(SwordSpawnPoints[location].position);
         
         if(isSharp)
             swordInstance.GetComponent<Projectile>().SetAsSharp();
@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour
     public void SpawnNote(Component sender, object data)
     {
         NoteType noteType = (NoteType)data;
-        GameObject note = _notePool.GetFromPool(Vector3.zero, Quaternion.identity);
+        GameObject note = _notePool.GetFromPool(Vector3.zero);
         NoteType baseType = noteType & ~NoteType.Sharp;
         bool isSharp = (noteType & NoteType.Sharp) != 0;
         if (isSharp)
