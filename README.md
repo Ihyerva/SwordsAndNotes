@@ -22,7 +22,9 @@
 
 ## 🎮 Gameplay Demo
 
-![Gameplay GIF](docs/images/gameplay_demo.gif)
+![Gameplay GIF](docs/images/gameplay_demo1.gif)
+![Gameplay GIF](docs/images/gameplay_demo2.gif)
+
 * **Input:** Real-time audio.
 * **Mechanic:** Enemies launch projectiles (swords) corresponding to specific musical notes.
 * **Goal:** Identify and play the correct note on your instrument to shatter the sword before it strikes.
